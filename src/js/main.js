@@ -59,5 +59,5 @@ document.getElementById('save').addEventListener('click', async (e) => {
     body.dispatchEvent(new CustomEvent('reload-list'));
   
     // Indicate list update with haptic feedback
-    await Haptics.impact({ style: ImpactStyle.Medium });
+    // await Haptics.impact({ style: ImpactStyle.Medium });
   });

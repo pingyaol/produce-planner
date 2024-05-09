@@ -15,17 +15,35 @@ body {
 /* Wrap our app content so it'*s not covered by nav bar */
 .app-container {
   margin-top: 60px;
+  @apply p-4 rounded; 
 }
 
 /* Style our main screen */
 .upload-box {
-  @apply cursor-pointer m-4 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6;
+  @apply cursor-pointer m-4 flex shadow-sm justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6;
 }
 
 .description-input {
-  @apply w-full p-2 rounded-md text-gray-900 border-2 border-gray-300 placeholder:text-gray-400;
+  @apply w-full p-2 rounded-md shadow-md text-gray-900 border-2 border-gray-300 placeholder:text-gray-400;
 }
 
 .button {
   @apply w-full rounded bg-blue-600 py-3 px-2.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600;
 }
+
+my-photos::part(list) {
+  @apply m-4; 
+}
+
+my-photos::part(btn) {
+  @apply text-center rounded w-auto bg-red-600 py-3 px-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600; 
+}
+
+my-photos::part(item) {
+  @apply p-4 shadow-xl; 
+}
+
+my-photos::part(image) {
+  width: 100%; 
+}
+

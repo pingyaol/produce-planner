@@ -58,13 +58,13 @@ window.customElements.define(
                 const arr = JSON.parse(value); 
                 const list = self.shadowRoot.getElementById("list"); 
 
-                arr.map(item => {
+                arr.map((item) => {
                     const el = document.createElement("div"); 
                     el.onclick = () => this.shouldShare(item); 
                     el.setAttribute("part", "item"); 
                     el.id = "items"; 
                     el.setAttribute("class", "list-item"); 
-                    const img = document.createElement("image"); 
+                    const img = document.createElement("img"); 
                     img.src = item.image; 
                     img.setAttribute("part", "image"); 
 
@@ -73,12 +73,28 @@ window.customElements.define(
 
                     list.appendChild(el); 
                 }); 
-
-                shouldShare = async (items => {
-
-
-                }); 
             }
+        }
+
+        shouldShare = async (item) => {
+            const fileName = `${new Date().getTime()}.png`; 
+
+            await Filesystem.writeFile({
+                path: fileName, 
+                date: item.image, 
+                directory: Directory.Cache,
+            }); 
+            const uriResult = await Filesystem.getUri({
+                directory: Directory.Cache, 
+                path: fileName,
+            }); 
+
+            await Share.share({
+                title: "Share this", 
+                text: item.description, 
+                uri: uriResult.uri, 
+                dialogTitle: "Share your image", 
+            }); 
         }
     }
 ); 
